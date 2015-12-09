@@ -78,6 +78,9 @@
 			// Number - The scale starting value
 			scaleStartValue: null,
 
+			// Boolean - Omit x-axis labels
+			omitXLabels: true,
+
 			// String - Colour of the scale line
 			scaleLineColor: "rgba(0,0,0,.1)",
 
@@ -2208,6 +2211,15 @@
 				return values;
 			};
 
+			//if omitting x labels, replace labels with empty strings
+			if(Chart.defaults.global.omitXLabels){
+			    var newLabels=[];
+			    for(var i=0;i<labels.length;i++){
+			        newLabels.push('');
+			    }
+			    labels=newLabels;
+			}
+
 			var scaleOptions = {
 				templateString : this.options.scaleLabel,
 				height : this.chart.height,
@@ -2679,6 +2691,15 @@
 				return values;
 			};
 
+			//if omitting x labels, replace labels with empty strings
+			if(Chart.defaults.global.omitXLabels){
+			    var newLabels=[];
+			    for(var i=0;i<labels.length;i++){
+			        newLabels.push('');
+			    }
+			    labels=newLabels;
+			}
+
 			var scaleOptions = {
 				templateString : this.options.scaleLabel,
 				height : this.chart.height,
@@ -3079,7 +3100,7 @@
 			helpers.each(this.segments,function(segment){
 				segment.save();
 			});
-			
+
 			this.reflow();
 			this.render();
 		},
